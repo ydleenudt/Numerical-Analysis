@@ -1,5 +1,3 @@
-**Program 11.1**
-
 /*类traezoidal的数据成员*/
 /*k           int       计数器*/
 /*n           int       分段的个数*/
