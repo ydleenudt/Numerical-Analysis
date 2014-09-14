@@ -7,7 +7,7 @@
 /*integral    double    积分值*/
 /*sum         double    和式*/
 
-#inlcude<iostream.h>
+#include<iostream.h>
 #include<math.h>
 
 class trapezoidal
@@ -24,7 +24,7 @@ class trapezoidal
     void intergration();
 };
 
-void main()
+int main()
 {
   trapezoidal trape;
   trape.intergration();
