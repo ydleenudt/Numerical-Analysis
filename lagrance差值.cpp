@@ -214,3 +214,129 @@ choice=1;
 cout<<y<<endl;//输出最终结果 
     
 } 
+
+
+//another source
+实验一 Lagrange插值算法(附源程序)  
+
+2007-10-12 14:00:28|  分类： 数值计算方法 |举报|字号 订阅
+ 
+
+实验一   插值多项式
+
+ 
+
+一、实验目的
+
+学会Lagrange插值算法,并应用算法于实际问题。
+
+二、实验要求
+
+1、以0.32,0.34,0.36为节点,分别用线性插值和抛物插值求正弦函数在0.3367处的近似值;
+
+2、取正弦函数
+
+3、如果有错，修改直至运行成功，查看运行结果；
+
+三、实验内容
+
+Lagrange插值多项式： ，其中 
+
+           
+
+四、实验环境
+
+计算中心机房
+
+五、实验步骤和方法
+
+1、程序设计
+
+2、计算实例： 1）取正弦函数 ;
+
+3、撰写实验报告
+
+ 
+
+六、实验预习要求
+
+预习Lagrange插值多项式
+
+七、实验报告要求
+
+实验目的明确，步骤清晰，有主要算法，实验数据，实验结果。
+
+[源程序]
+
+#include<iostream.h>
+#include<math.h>
+typedef struct data
+{
+ float x;
+ float y;
+}Data;
+Data d[20];
+
+float lagrange(float x,int count)
+{
+ float y=0.0;
+ for(int k=0;k<count;k++)
+ {
+  float p=1.0;
+  for(int j=0;j<count;j++)
+  {
+   if(k==j)continue;
+   p=p*(x-d[j].x)/(d[k].x-d[j].x);
+  }
+  y=y+p*d[k].y;
+ }
+ return y;
+}
+void main()
+{
+  float x,y;
+     int count,choice,i;
+  cout<<"请选择1.线形插值2.抛物插值："<<endl;
+  cin>>choice;
+  if(choice==1)
+  {
+   cout<<"你选择了线形插值："<<endl;
+   for(i=0;i<2;i++)
+   {
+      cout<<"请输入第"<<i+1<<"组x的值:";
+      cin>>d[i].x;
+      d[i].y=float(sin(d[i].x));
+            cout<<"第"<<i+1<<"组y的值为:"<<d[i].y<<endl;
+   }
+         cout<<"请输入x的值：";
+            cin>>x;
+            y=lagrange(x,2);
+         cout<<y<<endl;
+  }
+  else if(choice==2)
+  {                                                                                                                                    
+   cout<<"你选择了抛物插值："<<endl;
+    while(1)
+    {
+  cout<<"请输入x[i],y[i]的组数，不超过20组：";
+  cin>>count;
+  if(count<=20)
+   break;
+    }
+    for(int i=0;i<count;i++)
+    {
+  cout<<"请输入第"<<i+1<<"组x的值:";
+  cin>>d[i].x;
+  d[i].y=float(sin(d[i].x));
+        cout<<"第"<<i+1<<"组y的值为:"<<d[i].y<<endl;
+    }
+    cout<<"请输入x的值：";
+       cin>>x;
+       y=lagrange(x,count);
+    cout<<y<<endl;
+  }
+  else 
+  {
+   cout<<"输入有误"<<endl;
+     }
+}
